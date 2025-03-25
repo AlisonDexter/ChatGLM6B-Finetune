@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Agency - Bootstrap 5 Template</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Agench is an elegant design, 100% responsive Bootstrap 5 template. It is best for agency websites and marketing companies.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="static/assets/images/favicon.png">
+   
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="static/assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="static/assets/css/vendor/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="static/assets/css/vendor/muli-font.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    
+    <link rel="stylesheet" href="static/assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/aos.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/magnific-popup.css">
+    
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="static/assets/css/style.css">
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <link rel="stylesheet" href="static/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="static/assets/css/style.min.css"> -->
+
+</head>
+<style>
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+    }
+    #loginBtn {
+        border: none;  /* 去掉边框 */
+        background: none;  /* 移除背景 */
+        padding: 0;  /* 减少按钮额外填充 */
+        outline: none;  /* 取消点击时的外框 */
+        box-shadow: none;  /* 取消阴影 */
+    }
+    #nextField {
+        display: none;
+    }
+    
+/* 在<style>部分添加以下样式 */
+    #loginBtn {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#loginBtn:hover {
+    background-color: #f8f9fa;
+}
+
+#logoutBtn {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#logoutBtn:hover {
+    background-color: #f8f9fa;
+}
+
+</style>
+
+<body>
+
+    <div id="page" class="section">
+        <!-- Header Section Start -->
+        <div class="header-section header-transparent sticky-header section">
+            <div class="header-inner">
+                <div class="container position-relative">
+                    <div class="row justify-content-between align-items-center">
+
+                        <!-- Header Logo Start -->
+                        <div class="col-xl-2 col-auto order-0">
+                            <div class="header-logo">
+                                <a>
+                                    <img class="dark-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+                                    <img class="light-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Header Logo End -->
+
+                        <!-- Header Main Menu Start -->
+                        <div
+                            class="col-auto col-xl d-flex align-items-center justify-content-xl-center justify-content-end order-2 order-xl-1">
+                            <div class="menu-column-area d-none d-xl-block position-static">
+                                <nav class="site-main-menu">
+                                    <ul>
+                                        <li>
+                                            <a class="active" href="/home"><span
+                                                    class="menu-text">首页</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/introduct"><span class="menu-text">用户使用手册</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/contact"><span class="menu-text">案例检索</span></a>
+                                        </li>
+                                        <li>
+                                            <!-- <a href="/chatrobot"><span class="menu-text">颐年智伴助手</span></a> -->
+            
+                                                <a href="#" onclick="handleChatLink(event)"><span class="menu-text">颐年智伴助手</span></a>
+                                            
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Header Search Start -->
+                            <div class="header-search-area ml-xl-7 ml-0">
+
+                                <!-- Header Login Start -->
+
+                                <!-- Header Login End -->
+                            </div>
+                            <!-- Header Search End -->
+
+                            <!-- Header Mobile Menu Toggle Start -->
+                            <div class="header-mobile-menu-toggle d-xl-none ml-sm-2">
+                                <button class="toggle">
+                                    <i class="icon-top"></i>
+                                    <i class="icon-middle"></i>
+                                    <i class="icon-bottom"></i>
+                                </button>
+                            </div>
+                            <!-- Header Mobile Menu Toggle End -->
+                        </div>
+                        <!-- Header Main Menu End -->
+
+                        <!-- Header Right Start -->
+                        <div class="col-xl-2 col d-none d-sm-flex justify-content-end order-1 order-xl-2">
+                            <div id="user-info">
+                                <span id="username" class="username"></span>
+                            <button id=" loginLogoutBtn"><span class="btn btn-light btn-hover-primary">登录/注册</span></button>
+                            <button id="logoutBtn" class="btn btn-light btn-hover-primary" style="display: none;">退出登录</button>
+                        </div>
+                    </div>
+
+                      
+<!-- 登录弹窗 -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="header-logo">
+            <a>
+                <img class="dark-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+                <img class="light-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+            </a>
+        </div>
+        <h2>登录</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+        <form action="{{ url_for('home') }}" method="post" class="signin-form">
+            {{ login_form.hidden_tag() }}
+            <input type="hidden" name="next" id="nextField">
+            <div class="forms-gds">
+                <div class="form-input">
+                    {{ login_form.email(class="form-control input-box", placeholder="邮箱") }}
+                    {% if login_form.email.errors %}
+                        <div class="error-message">{{ login_form.email.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-input">
+                    {{ login_form.password(class="form-control input-box", placeholder="密码") }}
+                    {% if login_form.password.errors %}
+                        <div class="error-message">{{ login_form.password.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-input">
+                    <button type="submit" class="form-control input-box">登录</button>
+                </div>
+            </div>
+            <h6 class="already">没有账号吗? <a href="#" id="switchToRegister"><span>点击这里注册<span></span></span></a></h6>
+        </form>
+    </div>
+</div>
+
+<!-- 注册弹窗 -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <h2>注册</h2>
+        <form method="POST" action="{{ url_for('home') }}">
+            {{ registration_form.hidden_tag() }}
+            <div class="form-group">
+                {{ registration_form.name.label }}
+                {{ registration_form.name(class="form-control", placeholder="用户名") }}
+                {% if registration_form.name.errors %}
+                    <span class="error-message">{{ registration_form.name.errors[0] }}</span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ registration_form.email.label }}
+                {{ registration_form.email(class="form-control", placeholder="邮箱") }}
+                {% if registration_form.email.errors %}
+                    <span class="error-message">{{ registration_form.email.errors[0] }}</span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ registration_form.age.label }}
+                {{ registration_form.age(class="form-control", placeholder="年龄") }}
+                {% if registration_form.age.errors %}
+                    <span class="error-message">{{ registration_form.age.errors[0] }}</span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ registration_form.password.label }}
+                {{ registration_form.password(class="form-control", placeholder="密码") }}
+                {% if registration_form.password.errors %}
+                    <span class="error-message">{{ registration_form.password.errors[0] }}</span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ registration_form.confirm_password.label }}
+                {{ registration_form.confirm_password(class="form-control", placeholder="确认密码") }}
+                {% if registration_form.confirm_password.errors %}
+                    <span class="error-message">{{ registration_form.confirm_password.errors[0] }}</span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ registration_form.submit(class="btn btn-primary",value="注册" ) }}
+                
+            </div>
+            <h6 class="already">已经有账号了? <a href="#" id="switchToLogin"><span>点击这里登录<span></span></span></a></h6>
+        </form>
+    </div>
+</div>
+                        <!-- Header Right End -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header Section End -->
+
+        <!-- Main Search Start -->
+        <div class="main-search-active">
+            <div class="sidebar-search-icon">
+                <button class="search-close"><i class="pe-7s-close"></i></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form action="#">
+                    <div class="form-search">
+                        <input id="search" class="input-text" value="" placeholder="" type="search">
+                        <button>
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <p class="form-description">Hit enter to search or ESC to close</p>
+            </div>
+        </div>
+        <!-- Main Search End -->
+
+        <!-- Slider/Intro Section Start -->
+        <div class="intro-slider-wrap section">
+            <div class="intro-slider swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="intro-section section overlay" data-bg-image="static/assets/images/hero-image/hero-1.jpg">
+
+                            <div class="container">
+                                <div class="row row-cols-lg-1 row-cols-1">
+
+                                    <div class="col align-self-center">
+                                        <div class="intro-content mt-xl-8 mt-lg-8 mt-md-8 mt-sm-8 mt-xs-8">
+                                            <h2 class="title">欢迎使用我们的颐年智伴助手😃 </h2>
+                                            <div class="desc">
+                                                <p>在这里面你可以询问有关医疗、法律权益等相关内容的问题</p>
+                                                <br>
+                                                <p>也可以在我们的法律检索里面搜索你需要知道的法条或条例</p>
+                                            </div>
+                                            <!-- <a href="#" id="startExperience"><span class="btn btn-light btn-hover-primary">开始体验</span></a> -->
+
+                                            <a href="/chatrobot" id="startExperience">
+                                                <span class="btn btn-light btn-hover-primary">开始体验</span>
+                                            </a>
+                                            
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    
+
+
+
+        <!-- Scroll Top Start -->
+        <a href="#" class="scroll-top" id="scroll-top">
+            <i class="arrow-top fal fa-long-arrow-up"></i>
+            <i class="arrow-bottom fal fa-long-arrow-up"></i>
+        </a>
+        <!-- Scroll Top End -->
+    </div>
+
+    <div id="site-main-mobile-menu" class="site-main-mobile-menu">
+        <div class="site-main-mobile-menu-inner">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <a href="index.html"><img src="static/assets/images/logo/light-logo.png" alt=""></a>
+                </div>
+                <div class="mobile-menu-close">
+                    <button class="toggle">
+                        <i class="icon-top"></i>
+                        <i class="icon-bottom"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-menu-content">
+                <nav class="site-mobile-menu">
+                    <ul>
+                        <li>
+                            <a href="/home"><span class="menu-text">首页</span></a>
+                        </li>
+                        <li>
+                            <a href="/introduct"><span class="menu-text">介绍</span></a>
+                        </li>
+                        <li>
+                            <a href="/contact"><span class="menu-text">联系我们 </span></a>
+                        </li>
+                        <li>
+                            <a href="/chatrobot"><span class="menu-text">颐年智伴助手</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+<script>
+     // 全局AJAX错误处理
+     $(document).ajaxComplete(function(event, xhr) {
+        if(xhr.status === 401) {
+            $('#nextField').val(window.location.pathname);
+            $('#loginModal').show();
+        }
+    });
+
+    // 自动显示弹窗逻辑
+    document.addEventListener("DOMContentLoaded", function() {
+        {% if show_login_modal %}
+            $('#loginModal').show();
+        {% endif %}
+    });
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            let alerts = document.querySelectorAll(".alert");
+            alerts.forEach(alert => {
+                alert.style.opacity = "0";
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 3000); // 3秒后消失
+
+        // 注入登录状态（需确保后端传递了 is_authenticated）
+    const isAuthenticated = {{ 
+        current_user.is_authenticated|tojson|safe }};
+
+// 获取弹窗元素
+const loginModal = document.getElementById('loginModal');
+
+// 智能开始体验按钮
+
+document.getElementById('startExperience').addEventListener('click', function(e) {
+    const isAuthenticated = {{ current_user.is_authenticated|tojson|safe }};
+    
+    if (!isAuthenticated) {
+        e.preventDefault();
+        document.getElementById('nextField').value = '/chatrobot';
+        loginModal.style.display = 'block';
+    }
+    // 已登录用户会自动跳转
+});
+// 新增处理函数
+function handleChatLink(event) {
+    event.preventDefault(); // 阻止默认跳转
+    const isAuthenticated = {{ current_user.is_authenticated|tojson|safe }};
+
+    if (!isAuthenticated) {
+        document.getElementById('nextField').value = '/chatrobot';
+        loginModal.style.display = 'block';
+    } else {
+        window.location.href = '/chatrobot';
+    }
+}
+});
+
+
+// 在DOMContentLoaded事件中添加以下逻辑
+document.addEventListener('DOMContentLoaded', function() {
+    // 检查用户是否已登录
+    const isAuthenticated = {{ current_user.is_authenticated|tojson|safe }};
+    const username = {{ current_user.name|tojson|safe }};
+    
+    // 获取按钮元素和用户名元素
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const usernameElement = document.getElementById('username');
+    
+    if (isAuthenticated) {
+        // 如果已登录，隐藏“登录/注册”按钮，显示“退出登录”按钮并显示用户名
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+        usernameElement.textContent = username + ' | ';
+        usernameElement.style.display = 'inline-block';
+        
+        // 为“退出登录”按钮添加点击事件
+        logoutBtn.onclick = function() {
+            fetch('/logout', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 退出成功后刷新页面
+                    window.location.reload();
+                } else {
+                    alert('退出失败');
+                }
+            })
+            .catch(error => {
+                console.error('退出时出错:', error);
+                alert('退出时出错');
+            });
+        };
+    } else {
+        // 如果未登录，显示“登录/注册”按钮，隐藏“退出登录”按钮
+        loginBtn.style.display = 'inline-block';
+        logoutBtn.style.display = 'none';
+        usernameElement.style.display = 'none';
+        
+        // 为“登录/注册”按钮添加点击事件
+        loginBtn.onclick = function() {
+            document.getElementById('loginModal').style.display = 'block';
+        };
+    }
+});
+    
+</script>
+
+    <!-- JS
+============================================ -->
+
+    <!-- Vendors JS -->
+    <script src="static/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="static/assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="static/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+    <script src="static/assets/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="static/assets/js/plugins/aos.min.js"></script>
+    <script src="static/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="static/assets/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="static/assets/js/plugins/parallax.min.js"></script>
+    <script src="static/assets/js/plugins/jquery.ajaxchimp.min.js"></script>
+    <script src="static/assets/js/plugins/jquery.counterup.min.js"></script>
+    <script src="static/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="static/assets/js/plugins/svg-inject.min.js"></script>
+    <script src="static/assets/js/plugins/swiper.min.js"></script>
+    <script src="static/assets/js/plugins/vanilla-tilt.min.js"></script>
+    <script src="static/assets/js/plugins/vivus.min.js"></script>
+    <script src="static/assets/js/plugins/waypoints.min.js"></script>
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <script src="static/assets/js/vendor/vendor.min.js"></script>
+    <script src="static/assets/js/plugins/plugins.min.js"></script> -->
+
+    <!-- Main Activation JS -->
+    <script src="static/assets/js/main.js"></script>
+
+    <script>
+        
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var loginModal = document.getElementById('loginModal');
+            var registerModal = document.getElementById('registerModal');
+            var loginBtn = document.getElementById('loginBtn');
+            var closeButtons = document.getElementsByClassName('close');
+            var switchToRegister = document.getElementById('switchToRegister');
+            var switchToLogin = document.getElementById('switchToLogin');
+            var registerForm = document.querySelector('#registerModal form');
+
+            function clearFormErrors() {
+                var errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(function(error) {
+                    error.innerHTML = '';  
+                    error.style.display = 'none'; 
+                });
+
+                var flashMessages = document.querySelector('.flash-messages');
+                if (flashMessages) {
+                    flashMessages.innerHTML = ''; 
+                }
+            }
+
+             // 登录/注册按钮点击事件
+            loginBtn.onclick = function() {
+                loginModal.style.display = 'block';
+            };
+
+            // 关闭弹窗
+            for (var i = 0; i < closeButtons.length; i++) {
+                closeButtons[i].onclick = function() {
+                    loginModal.style.display = 'none';
+                    registerModal.style.display = 'none';
+
+                    document.querySelectorAll('input').forEach(input => input.value = '');
+                    clearFormErrors();
+                };
+            }
+
+
+            // 点击弹窗外部关闭弹窗
+            window.onclick = function(event) {
+                if (event.target == loginModal || event.target == registerModal) {
+                    loginModal.style.display = 'none';
+                    registerModal.style.display = 'none';
+
+                    document.querySelectorAll('input').forEach(input => input.value = '');
+                    clearFormErrors();
+                }
+            };
+
+            // 切换到注册弹窗
+            switchToRegister.onclick = function(event) {
+                event.preventDefault();
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'block';
+
+                document.querySelectorAll('#registerModal input').forEach(input => input.value = '');
+                clearFormErrors();
+            };
+
+            // 切换到登录弹窗
+            switchToLogin.onclick = function(event) {
+                event.preventDefault();
+                registerModal.style.display = 'none';
+                loginModal.style.display = 'block';
+
+                document.querySelectorAll('#loginModal input').forEach(input => input.value = '');
+                clearFormErrors();
+            };
+
+            clearFormErrors();
+        });
+      
+        // 在DOMContentLoaded事件中添加以下逻辑
+document.addEventListener('DOMContentLoaded', function() {
+    // 检查用户是否已登录
+    const isAuthenticated = {{ current_user.is_authenticated|tojson|safe }};
+    const username = {{ current_user.name|tojson|safe }};
+    
+    // 获取按钮元素和用户名元素
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const usernameElement = document.getElementById('username');
+    
+    if (isAuthenticated) {
+        // 如果已登录，隐藏“登录/注册”按钮，显示“退出登录”按钮并显示用户名
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+        usernameElement.textContent = username + ' | ';
+        usernameElement.style.display = 'inline-block';
+        
+        // 为“退出登录”按钮添加点击事件
+        logoutBtn.onclick = function() {
+            fetch('/logout', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 退出成功后刷新页面
+                    window.location.reload();
+                } else {
+                    alert('退出失败');
+                }
+            })
+            .catch(error => {
+                console.error('退出时出错:', error);
+                alert('退出时出错');
+            });
+        };
+    } else {
+        // 如果未登录，显示“登录/注册”按钮，隐藏“退出登录”按钮
+        loginBtn.style.display = 'inline-block';
+        logoutBtn.style.display = 'none';
+        usernameElement.style.display = 'none';
+        
+        // 为“登录/注册”按钮添加点击事件
+        loginBtn.onclick = function() {
+            document.getElementById('loginModal').style.display = 'block';
+        };
+    }
+});
+ 
+    </script>
+
+
+
+
+</body>
+
+</html>

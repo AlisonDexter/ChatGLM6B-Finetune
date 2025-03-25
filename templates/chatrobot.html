@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Agency - Bootstrap 5 Template</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Agench is an elegant design, 100% responsive Bootstrap 5 template. It is best for agency websites and marketing companies.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    
+    <link rel="shortcut icon" type="image/x-icon" href="static/assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="static/assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="static/assets/css/vendor/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="static/assets/css/vendor/muli-font.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    
+    <link rel="stylesheet" href="static/assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/aos.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="static/assets/css/style.css">
+    <link rel="stylesheet" href="static/assets/css/侧边栏.css">
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <link rel="stylesheet" href="static/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="static/assets/css/style.min.css"> -->
+
+
+<style>
+     /* 样式调整 */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        height: 100vh; /* 确保 body 占满整个视口高度 */
+    }
+
+        button{
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        #recording-indicator{
+            display: none;
+            margin-top: 20px;
+        }
+        .username {
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+            text-decoration: none; /* 去掉下划线 */
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: flex-end;
+            z-index: 5;
+           
+        }
+
+         .chat-box {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 边框外阴影 */
+            height: 450px; /* 固定高度 */
+            width: 100%; /* 根据需要设置宽度 */
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .chat-entry {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+
+
+        .chat-entry .user-message, .chat-entry .bot-response {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        .chat-entry .user-message {
+            align-self: flex-end;
+            background-color: #dcf8c6;
+            color:black;
+        }
+
+        .chat-entry .bot-response {
+            align-self: flex-start;
+            background-color: #f1f0f0;
+            color:black;
+
+        }
+
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .input-container input[type="text"] {
+            flex-grow: 1;
+            margin-right: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .input-container input[type="submit"] {
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .input-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        button{
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 20px;
+        }
+        #recording-indicator{
+            display: none;
+    margin-top: 10px;
+    width: 60px;
+    height: 70px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+        }
+        .audio-button{
+            
+            display: block;
+            padding: 8px 16pxs
+        }
+        .audio_contain{
+            display: inline-flex;
+        }
+        .loudspeaker{
+            width: 10px;
+            height: 10px;
+            padding-top: 5px;
+        }
+
+        .text-loudspeaker{
+            margin-bottom: 3px;
+        }
+        .loudspeaker-button {
+            background: none; /* 去掉按钮背景 */
+            border: none; /* 去掉按钮边框 */
+            padding: 0; /* 去掉按钮内边距 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+        }
+
+        .loudspeaker-icon {
+            width: 20px; /* 设置图标宽度 */
+            height: 20px; /* 设置图标高度 */
+        }
+       
+
+        .btn-hover-primary {
+            line-height: 52px;
+            box-sizing: content-box;
+        }
+        
+      
+       
+        .btn-clear-history {
+            float: left;
+            margin-left: 10px;
+        }
+                
+       
+.audio-button{
+    margin: 5px;
+    height: 55px;
+    border: none; /* 去掉边框 */
+    background-color:#007bff; 
+    color: white; /* 白色文字 */
+    padding: 10px 20px; /* 内边距 */
+    border-radius: 7px;/* 圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+    font-size: 16px; /* 字体大小 */
+    transition: background-color 0.3s; /* 平滑过渡效果 */
+    margin-bottom: 20px;
+}
+.auio-button{
+    margin: 5px ;
+    height: 55px;
+    border: none; /* 去掉边框 */
+    background-color:#67b0ff; 
+    color: white; /* 白色文字 */
+    padding: 10px 20px; /* 内边距 */
+    border-radius: 7px;/* 圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+    font-size: 16px; /* 字体大小 */
+    transition: background-color 0.3s; /* 平滑过渡效果 */
+    margin-bottom: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+<!-- 在body底部添加以下代码 -->
+<!-- 登录弹窗 -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="header-logo">
+            <a>
+                <img class="dark-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+            </a>
+        </div>
+        <h2>登录</h2>
+        <div class="flash-messages" id="login-flash"></div>
+        <form method="POST" action="/login" class="signin-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="next" id="nextField">
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="邮箱" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="密码" required>
+            </div>
+            <button type="submit" class="btn btn-primary">登录</button>
+            <h6 class="already">没有账号吗? <a href="#" id="switchToRegister">点击这里注册</a></h6>
+        </form>
+    </div>
+</div>
+
+<!-- 注册弹窗 -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="flash-messages" id="register-flash"></div>
+        <h2>注册</h2>
+        <form method="POST" action="/register">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="用户名" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="邮箱" required>
+            </div>
+            <div class="form-group">
+                <input type="number" name="age" class="form-control" placeholder="年龄" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="密码" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirm_password" class="form-control" placeholder="确认密码" required>
+            </div>
+            <button type="submit" class="btn btn-primary">注册</button>
+            <h6 class="already">已经有账号了? <a href="#" id="switchToLogin">点击这里登录</a></h6>
+        </form>
+    </div>
+</div>
+ <!-- 侧边栏1 -->
+ <div class="sidebar1" id="sidebar1">
+    <button class="bubble" id="toggle-sidebar" data-tooltip="打开侧边栏">☰</button>
+    <button class="bubble" id="new-chat-btn-expanded" data-tooltip="开启新对话">+</button>
+</div>
+
+<!-- 侧边栏2 -->
+<div class="sidebar2" id="sidebar2">
+    <button class="bubble" data-tooltip="收起侧边栏" id="close-sidebar">➜</button>
+    <button id="new-chat-btn">+ 开启新对话</button>
+    <div class="chat-history">
+        <h3>今天</h3>
+        <ul id="today-list"></ul>
+            {% for chat in today_chats %}
+            <li>
+                <a href="#" class="chat-history-item" data-id="{{ chat.id }}">{{ chat.question }}</a>
+                
+            </li>
+            
+            {% endfor %}
+        </ul>
+        
+        <h3>昨天</h3>
+        <ul id="yesterday-list"></ul>
+            {% for chat in yesterday_chats %}
+            <li>
+                <a href="#" class="chat-history-item" data-id="{{ chat.id }}">{{ chat.question }}</a>
+               
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>7天内</h3>
+        <ul id="last-week-list"></ul>
+            {% for chat in last_week_chats %}
+            <li><a href="#" class="chat-history-item" data-id="{{ chat.id }}">{{ chat.question }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h3>30天内</h3>
+        <ul id="last-month-list"></ul>
+            {% for chat in last_month_chats %}
+            <li><a href="#" class="chat-history-item" data-id="{{ chat.id }}">{{ chat.question }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- 主内容区域 -->
+<div class="main-content" id="main-content">    
+        
+    <div id="page" class="section">
+
+        <div class="header-section header-transparent sticky-header section">
+            <div class="header-inner">
+                <div class="container position-relative">
+                    <div class="row justify-content-between align-items-center">
+
+                        <!-- Header Logo Start -->
+                        <div class="col-xl-2 col-auto order-0">
+                            <div class="header-logo">
+                                <a>
+                                    <img class="dark-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+                                    <img class="light-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Header Logo End -->
+
+                        <!-- Header Main Menu Start -->
+                        <div
+                            class="col-auto col-xl d-flex align-items-center justify-content-xl-center justify-content-end order-2 order-xl-1">
+                            <div class="menu-column-area d-none d-xl-block position-static">
+                                <nav class="site-main-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="/home"><span
+                                                    class="menu-text">首页</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/introduct"><span class="menu-text">用户使用手册</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/contact"><span class="menu-text">案例检索</span></a>
+                                        </li>
+                                        <li>
+                                            <a class="active" href="/chatrobot" id="chatbotLink"><span class="menu-text">颐年智伴助手</span></a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Header Search Start -->
+                            <div class="header-search-area ml-xl-7 ml-0">
+
+                                
+                            </div>
+                            <!-- Header Search End -->
+
+                            <!-- Header Mobile Menu Toggle Start -->
+                            <div class="header-mobile-menu-toggle d-xl-none ml-sm-2">
+                                <button class="toggle">
+                                    <i class="icon-top"></i>
+                                    <i class="icon-middle"></i>
+                                    <i class="icon-bottom"></i>
+                                </button>
+                            </div>
+                            <!-- Header Mobile Menu Toggle End -->
+                        </div>
+                        <!-- Header Main Menu End -->
+
+                        <!-- Header Right Start -->
+                        <div class="col-xl-2 col d-none d-sm-flex justify-content-end order-1 order-xl-2">
+                            {% if current_user.is_authenticated %}
+                              <div class="username-container" style="display: flex; align-items: center;">
+                                <span class="username">{{ current_user.name }}</span>
+                                <a href="{{ url_for('logout') }}" style="line-height: 30px; margin-left: 1rem; height: 30px;" class="btn btn-light btn-hover-primary">退出登录</a>
+                              </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Section End -->
+         <!-- 侧边栏 -->
+         
+       
+
+        <!-- Main Search Start -->
+        <div class="main-search-active">
+            <div class="sidebar-search-icon">
+                <button class="search-close"><i class="pe-7s-close"></i></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form action="#">
+                    <div class="form-search">
+                        <input id="search" class="input-text" value="" placeholder="" type="search">
+                        <button>
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <p class="form-description"></p>
+            </div>
+        </div>
+        <!-- Main Search End -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--         Slider/Intro Section Start-->
+        <div class="intro-slider-wrap section">
+<!--           <div class="intro-slider swiper-container">-->
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="intro-section section overlay" data-bg-image="static/assets/images/hero-image/hero-1.jpg">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                       
+                                        <div class="chat-container w-100---">
+                                            <span style="font-size: 24px; color:rgb(255, 255, 255); margin-top: 30px;">点击下面按钮进行语音输入</span>
+                                            <div class="audio_contain">
+                                                <button class="audio-button" id="start-recording" >开始说话</button>
+                                                <button class="auio-button" id="stop-recording" disabled>停止说话</button>
+                                            
+                                                <img id="recording-indicator" src="static/assets/images/recording.gif" alt="录音">
+                                            </div>
+                                            <div class="chat-box" id="chat-box">
+                                                {% for entry in chat_history %}
+                                                    <div class="chat-entry">
+                                                        <div class="user-message">
+                                                            <p class="message-text"><strong></strong>{{ entry['question'] }}</p>
+
+                                                        </div>
+                                                        <div class="bot-response">
+                                                            <p class="message-text text-loudspeaker" id="response-text">{{ entry['response'] }}</p>
+                                                            <button class="loudspeaker-button">
+                                                                <img src="static/assets/images/loudspeaker.svg" alt="扬声器" class="loudspeaker-icon">
+                                                            </button>
+                                                            <audio id="audio-player" style="display:none;"></audio>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            
+                                            <form id="chat-form" method="post" action="/chatrobot">
+                                                {{ form.hidden_tag() }}  <!-- 自动生成 CSRF 令牌 -->
+                                                <label for="question">欢迎使用颐年智伴助手</label>
+                                                <div id="loading-indicator" style="display: none;">
+                                                    <div class="spinner"></div>
+                                                    <p>正在思考中...</p>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <input class="form-control me-2" type="text" id="question" name="question" placeholder="输入您的问题..." required >
+                                                    <input type="submit" class="btn btn-primary" value="发送" style="flex:3;">
+                                                </div>
+                                                
+                                            </form>
+                                            <!-- 清除历史记录按钮 - 简化版本 -->
+                                            <form method="post" action="{{ url_for('clear_history') }}">
+                                                
+                                                <button type="submit" class="btn btn-danger">清除聊天记录</button>
+                                            </form>
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                               
+                                    
+                                        
+                                  
+                                
+                         
+                            
+                    </div>
+                </div>
+           </div>
+        </div>
+    
+         
+        
+    </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            // 直接提交表单而不使用AJAX - 简化解决方案
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log("页面已加载，正在设置事件监听器");
+                
+                // 获取表单元素
+                var clearForm = document.getElementById('clear-history-form');
+                
+                if (clearForm) {
+                    console.log("找到清除历史表单");
+                    
+                    // 添加点击事件 - 直接提交表单 (不使用AJAX)
+                    clearForm.addEventListener('submit', function(event) {
+                        // 不阻止默认提交
+                        console.log("表单提交中...");
+                    });
+                } else {
+                    console.error("未找到清除历史表单");
+                }
+                 // 清除历史记录按钮的事件处理
+                $('#clear-history-form').on('submit', function() {
+                    // 不阻止表单提交，让它正常进行处理
+                    return confirm('确定要清除所有聊天记录吗？');
+                });
+                
+                
+            });
+            </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 弹窗控制逻辑
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const closeButtons = document.querySelectorAll('.close');
+    const switchToRegister = document.getElementById('switchToRegister');
+    const switchToLogin = document.getElementById('switchToLogin');
+    
+    // 实时检查登录状态
+    function checkAuth() {
+            fetch('/check_auth')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.authenticated) {
+                        $('#loginModal').show();
+                    }
+                });
+        }
+        checkAuth();
+        setInterval(checkAuth, 300000);  // 每5分钟检查一次
+
+    // 显示登录弹窗
+    function showLoginModal() {
+        loginModal.style.display = 'block';
+    }
+    
+    // 关闭弹窗
+    function closeModals() {
+        loginModal.style.display = 'none';
+        registerModal.style.display = 'none';
+    }
+    
+    // 事件监听
+    window.onclick = function(event) {
+        if (event.target == loginModal || event.target == registerModal) {
+            closeModals();
+        }
+    };
+    
+    closeButtons.forEach(btn => btn.addEventListener('click', closeModals));
+    switchToRegister.addEventListener('click', () => {
+        loginModal.style.display = 'none';
+        registerModal.style.display = 'block';
+    });
+    switchToLogin.addEventListener('click', () => {
+        registerModal.style.display = 'none';
+        loginModal.style.display = 'block';
+    });
+
+    // 检查登录状态
+    fetch('/check_login_status')
+        .then(response => response.json())
+        .then(data => {
+            if (!data.isLoggedIn) {
+                showLoginModal();
+            }
+        });
+});
+
+// 新增对导航栏链接的处理
+document.getElementById('chatbotLink').addEventListener('click', function(e) {
+    if (!isAuthenticated) {
+        e.preventDefault();
+        document.getElementById('nextField').value = '/chatrobot';
+        loginModal.style.display = 'block';
+    }
+});
+// 修改表单提交为AJAX
+document.querySelector('.signin-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    fetch('/login', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name="csrf_token"]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.reload();
+        } else {
+            document.getElementById('login-flash').innerHTML = 
+                `<div class="alert alert-danger">${data.error}</div>`;
+        }
+    });
+});
+
+document.querySelector('#registerModal form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    fetch('/register', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name="csrf_token"]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.reload();
+        } else {
+            document.getElementById('register-flash').innerHTML = 
+                `<div class="alert alert-danger">${data.error}</div>`;
+        }
+    });
+});
+    // 声明全局变量存储当前用户ID
+    let currentUserId = null;
+    
+    // 首先获取当前用户信息
+    function getCurrentUser() {
+        return fetch('/get_current_user')
+            .then(response => response.json())
+            .then(userData => {
+                if (userData.user_id) {
+                    currentUserId = userData.user_id;
+                    console.log("当前登录用户ID:", currentUserId);
+                    return userData;
+                } else {
+                    console.error("未获取到用户信息");
+                    throw new Error("未获取到用户信息");
+                }
+            });
+    }
+    
+    // 清空并重新绑定聊天记录列表
+    function loadChatHistory() {
+        fetch('/get_user_chat_history')
+            .then(response => response.json())
+            .then(data => {
+                const todayList = document.getElementById("today-list");
+                const yesterdayList = document.getElementById("yesterday-list");
+                const lastWeekList = document.getElementById("last-week-list");
+                const lastMonthList = document.getElementById("last-month-list");
+                
+                todayList.innerHTML = "";
+                yesterdayList.innerHTML = "";
+                lastWeekList.innerHTML = "";
+                lastMonthList.innerHTML = "";
+
+
+                // 处理今天的聊天记录
+                if (data.today && data.today.length > 0) {
+                    populateList(todayList, data.today);
+                } else {
+                    todayList.innerHTML = "<li>暂无聊天记录</li>";
+                }
+                
+                // 处理昨天的聊天记录
+                if (data.yesterday && data.yesterday.length > 0) {
+                    populateList(yesterdayList, data.yesterday);
+                } else {
+                    yesterdayList.innerHTML = "<li>暂无聊天记录</li>";
+                }
+                
+                // 处理最近7天的聊天记录
+                if (data.last_week && data.last_week.length > 0) {
+                    populateList(lastWeekList, data.last_week);
+                } else {
+                    lastWeekList.innerHTML = "<li>暂无聊天记录</li>";
+                }
+                
+                // 处理最近30天的聊天记录
+                if (data.last_month && data.last_month.length > 0) {
+                    populateList(lastMonthList, data.last_month);
+                } else {
+                    lastMonthList.innerHTML = "<li>暂无聊天记录</li>";
+                }
+                
+                // 绑定点击事件
+                bindChatHistoryEvents();
+            })
+            .catch(error => console.error("获取用户聊天记录失败:", error));
+    }
+
+
+
+     // 辅助函数：填充列表项
+    function populateList(listElement, chatItems) {
+        chatItems.forEach(chat => {
+            const chatItem = document.createElement("li");
+            const chatLink = document.createElement("a");
+            chatLink.href = "#";
+            chatLink.textContent = chat.question || "无标题对话";
+            chatLink.classList.add("chat-history-item");
+            chatLink.setAttribute("data-id", chat.id);
+            // chatLink.setAttribute("data-user-id", currentUserId); // 添加用户ID属性，确保只能查看自己的记录
+            chatItem.appendChild(chatLink);
+            listElement.appendChild(chatItem);
+        });
+    }
+
+    // 使用事件委托绑定点击事件到所有聊天历史列表
+    function bindChatHistoryEvents() {
+        // 移除所有列表的之前事件监听器
+        const lists = [
+            document.getElementById("today-list"),
+            document.getElementById("yesterday-list"),
+            document.getElementById("last-week-list"),
+            document.getElementById("last-month-list")
+        ];
+        
+        lists.forEach(list => {
+            if (list) {  // 确保元素存在
+                list.removeEventListener("click", delegatedChatClick);
+                list.addEventListener("click", delegatedChatClick);
+            }
+        });
+        
+        console.log("已绑定所有聊天历史列表的点击事件");
+    }
+    
+    // 委托的点击事件处理函数
+    function delegatedChatClick(event) {
+        // 查找点击的是否是聊天历史项
+        let target = event.target;
+        
+        // 如果点击的是聊天历史项
+        if (target.classList.contains("chat-history-item")) {
+            event.preventDefault();
+            
+            // 获取聊天ID和用户ID
+            let chatId = target.getAttribute("data-id");
+            console.log("点击了聊天历史项，ID:", chatId);
+            
+            // 加载聊天内容
+            loadChatContent(chatId);
+        }
+    }
+    
+    // 加载聊天内容
+    function loadChatContent(chatId) {
+        if (!chatId) {
+            console.error("无效的聊天ID");
+            return;
+        }
+        
+        // 添加视觉反馈，表明正在加载
+        let chatContainer = document.getElementById("chat-box");
+        chatContainer.innerHTML = "<div class='system-message'>正在加载聊天记录...</div>";
+        
+        // 获取聊天记录
+        fetch(`/get_chat_history/${chatId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(response.status === 403 
+                        ? "无权访问该聊天记录" 
+                        : `获取聊天记录失败: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("获取的聊天记录:", data);
+                 
+                // 检查是否有错误消息
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                chatContainer.innerHTML = "";  // 清空当前聊天记录
+
+                if (data.history && data.history.length > 0) {
+                    data.history.forEach(chat => {
+                        let chatEntry = document.createElement("div");
+                        chatEntry.classList.add("chat-entry");
+
+                        let userMessage = document.createElement("div");
+                        userMessage.classList.add("user-message");
+                        userMessage.innerHTML = `<div class="message-text">${chat.question}</div>`;
+
+                        let botResponse = document.createElement("div");
+                        botResponse.classList.add("bot-response");
+                        botResponse.innerHTML = `
+                            <div class="message-text text-loudspeaker" id="response-text">${chat.response}</div>
+                            <button class="loudspeaker-button">
+                                <img src="static/assets/images/loudspeaker.svg" alt="扬声器" class="loudspeaker-icon">
+                            </button>
+                            <audio id="audio-player" style="display:none;"></audio>
+                        `;
+                        chatEntry.appendChild(userMessage);
+                        chatEntry.appendChild(botResponse);
+                        chatContainer.appendChild(chatEntry);
+                    });
+                } else {
+                    chatContainer.innerHTML = "<div class='system-message'>未找到聊天记录</div>";
+                }
+            })
+            .catch(error => {
+                console.error("获取聊天记录失败:", error);
+                chatContainer.innerHTML = `<div class='system-message'>错误: ${error.message}</div>`;
+            });
+    }
+    // 在录音按钮和发送消息处添加检查
+function checkAuthBeforeAction(callback) {
+    fetch('/check_login_status')
+        .then(res => res.json())
+        .then(data => {
+            if (!data.isLoggedIn) {
+                showLoginModal();
+                return Promise.reject('未登录');
+            }
+            return callback();
+        });
+}
+ 
+
+    // 保存当前对话历史
+    function saveCurrentChat() {
+        const chatContainer = document.getElementById("chat-box");
+        const chatEntries = chatContainer.querySelectorAll('.chat-entry');
+        if (chatEntries.length === 0) {
+            console.log("没有聊天记录需要保存");
+            return;
+        }
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // 提取当前对话的聊天记录
+        const chatData = [];
+        chatEntries.forEach(entry => {
+            const userMessage = entry.querySelector('.user-message .message-text').textContent;
+            const botResponse = entry.querySelector('.bot-response .message-text').textContent;
+            chatData.push({ question: userMessage, response: botResponse });
+        });
+        if (chatData.length === 0) {
+            console.log("未找到有效的聊天记录");
+            return;
+        }
+
+        // 保存聊天记录到后端
+        fetch('/start_new_chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrf_token')
+            },
+            body: JSON.stringify({ chat_history: chatData })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`保存失败: ${response.status}`);
+            }
+            return response.json();
+        })
+        
+        .then(data => {
+            console.log('聊天记录已保存', data);
+            // 保存成功后重新加载聊天历史
+            loadChatHistory();
+        })
+        .catch(error => {
+            console.error('保存聊天记录失败:', error);
+            alert(`保存聊天记录失败: ${error.message}`);
+        });
+    }
+
+    // 点击新对话时保存当前对话并清空聊天框
+    document.getElementById('new-chat-btn').addEventListener('click', function () {
+        saveCurrentChat(); // 保存当前对话
+
+        // 清空聊天框和输入框
+        const chatContainer = document.getElementById("chat-box");
+        chatContainer.innerHTML = ''; // 清空聊天框
+
+        const inputBox = document.getElementById("chat-input");
+        if (inputBox) {
+            inputBox.value = ''; // 清空输入框
+        }
+
+        console.log("开始新的对话");
+
+        // 在侧边栏添加一个新的对话项，标题为“新对话”
+        // const todayList = document.getElementById("today-list");
+        // const newChatItem = document.createElement("li");
+        // const chatId = "chat-" + (todayList.children.length + 1);
+        // newChatItem.textContent = "新对话";
+        // newChatItem.id = chatId;
+        // newChatItem.classList.add("bubble"); // 添加 bubble 类
+        // newChatItem.setAttribute("data-tooltip", "点击查看对话"); // 设置 Tooltip 内容
+        // todayList.appendChild(newChatItem);
+
+        // console.log("开始新的对话");
+    });
+
+     // 监听用户输入问题
+     const inputElement = document.getElementById("chat-input");
+    if (inputElement) {
+        inputElement.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                const userMessage = this.value.trim();
+                if (userMessage) {
+                    // 如果是第一次发送问题，更新侧边栏的标题
+                    const todayList = document.getElementById("today-list");
+                    const lastChatItem = todayList.lastElementChild;
+                    if (lastChatItem && lastChatItem.textContent === "新对话") {
+                        lastChatItem.textContent = userMessage; // 更新标题为用户的问题
+                    }
+
+                    // 清空输入框
+                    this.value = '';
+                }
+            }
+        });
+    }
+     // 初始化：先获取用户信息，再加载聊天历史
+    getCurrentUser()
+        .then(() => {
+            loadChatHistory();
+            console.log("初始化完成");
+        })
+        .catch(error => {
+            console.error("初始化失败:", error);
+            alert("加载用户信息失败，请刷新页面重试");
+        });
+    
+
+
+
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('chat-form');
+    const questionInput = document.getElementById('question');
+    const chatBox = document.getElementById('chat-box');
+    const loadingIndicator = document.getElementById('loading-indicator');
+    
+    // 检查用户是否登录
+    fetch('/check_login_status')
+        .then(response => response.json())
+        .then(data => {
+            if (!data.isLoggedIn) {
+                // 如果用户未登录，跳转到 home.html
+                window.location.href = '/home';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking login status:', error);
+        });
+    });
+
+    fetch('/get_csrf_token')
+        .then(response => response.json())
+        .then(data => {
+            document.cookie = `csrf_token=${data.csrf_token}; path=/`;
+        })
+        .catch(error => console.error('获取 CSRF 令牌失败:', error));
+
+ 
+    $(document).ready(function() {
+
+        function scrollToBottom() {
+            const chatBox = $('#chat-box');
+            chatBox.scrollTop(chatBox.prop('scrollHeight'));
+        }
+
+        scrollToBottom();
+
+        $('#chat-form').on('submit', function(event) {
+            event.preventDefault();
+            const question = $('#question').val();
+            // 显示加载提示
+            $('#loading-indicator').show();
+            $.ajax({
+                url: '/chatrobot',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrf_token')
+                },
+                data: JSON.stringify({ question: question }),
+                success: function(response) {
+                    $('#loading-indicator').hide();
+                    const chatBox = $('#chat-box');
+                    const newEntry = `
+                        <div class="chat-entry">
+                            <div class="user-message">
+                                <p class="message-text"><strong></strong>${question}</p>
+                            </div>
+                            <div class="bot-response">
+                                <p class="message-text text-loudspeaker">${response.response}</p>
+                                <button class="loudspeaker-button">
+                                    <img src="static/assets/images/loudspeaker.svg" alt="play-audio" class="loudspeaker-icon">
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    chatBox.append(newEntry);
+                    $('#question').val('');
+                    scrollToBottom();
+                    $('#loading-indicator').hide();
+                    // 为新添加的扬声器按钮添加点击事件
+                    chatBox.find('.loudspeaker-button').last().on('click', function() {
+                        const text = $(this).siblings('.text-loudspeaker').text();
+                        fetch('/generate_audio', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ text: text })
+                        })
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const audioUrl = URL.createObjectURL(blob);
+                            //const audioPlayer = document.getElementById('audio-player');
+                            let botResponse = event.target.closest('.bot-response');
+                            let audioPlayer = botResponse.querySelector('.audio-player');
+                            if (!audioPlayer) {  // 如果找不到 audio，创建一个
+                                audioPlayer = document.createElement('audio');
+                                audioPlayer.classList.add('audio-player');
+                                audioPlayer.style.display = 'none';
+                                botResponse.appendChild(audioPlayer);
+                            }
+                            audioPlayer.src = audioUrl;
+                            audioPlayer.play();
+                        })
+                        .catch(error => console.error('Error generating audio:', error));
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX 请求出错: ', textStatus, errorThrown);
+                    alert('提交时出错，请重试！');
+                        }
+                
+                    });
+                });
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+  
+
+        let mediaRecorder;
+        let audioChunks = [];
+        
+        $('#start-recording').on('click', function() {
+            audioChunks = [];
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.start();
+                    $('#recording-indicator').show();
+                    $('#start-recording').prop('disabled', true);
+                    $('#stop-recording').prop('disabled', false);
+
+                    mediaRecorder.ondataavailable = event => {
+                        audioChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const formData = new FormData();
+                        formData.append('audio', audioBlob, 'test.wav');
+
+                        fetch('/process_audio', {
+                            method: 'POST',
+                            headers: {
+                             'X-CSRFToken': getCookie('csrf_token')},
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.text) {
+                                $('#question').val(data.text); // 确保输入框的ID为question
+                            } else {
+                                console.error('Error processing audio:', data.error);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error uploading audio:', error);
+                        });
+
+                        $('#recording-indicator').hide();
+                        $('#start-recording').prop('disabled', false);
+                        $('#stop-recording').prop('disabled', true);
+                    };
+                })
+                .catch(error => console.error('Error accessing media devices.', error));
+        });
+
+        $('#stop-recording').on('click', function() {
+            mediaRecorder.stop();
+            $('#recording-indicator').hide();
+            $('#start-recording').prop('disabled', false);
+            $('#stop-recording').prop('disabled', true);
+        });
+
+        // document.querySelector('.loudspeaker-button').addEventListener('click', function() {
+        //     const text = document.getElementById('response-text').innerText;
+        //     fetch('/generate_audio', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({ text: text })
+        //     })
+        //     .then(response => response.blob())
+        //     .then(blob => {
+        //         const audioUrl = URL.createObjectURL(blob);
+        //         const audioPlayer = document.getElementById('audio-player');
+        //         if (audioPlayer) {
+        //             audioPlayer.src = audioUrl;
+        //             audioPlayer.play();
+        //         } else {
+        //             console.error('Audio player element not found');
+        //         }
+        //     })
+        //     .catch(error => console.error('Error generating audio:', error));
+        // });
+
+      
+
+    
+
+
+        document.addEventListener('click', function(event) {
+            if (event.target.closest('.loudspeaker-button')) {
+                const text = event.target.closest('.bot-response').querySelector('.text-loudspeaker').innerText;
+                fetch('/generate_audio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrf_token')
+                        
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                    const audioUrl = URL.createObjectURL(blob);
+                    let audioPlayer = event.target.closest('.bot-response').querySelector('audio');
+
+                    if (audioPlayer) {
+                        audioPlayer.src = audioUrl;
+                        audioPlayer.play();
+                    } else {
+                        console.error('Audio player element not found');
+                    }
+                })
+                .catch(error => console.error('Error generating audio:', error));
+            }
+});
+
+        document.getElementById('chat-box').addEventListener('click', function(event) {
+            if (event.target.closest('.loudspeaker-button')) {
+                const text = event.target.closest('.bot-response').querySelector('.text-loudspeaker').innerText;
+                fetch('/generate_audio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                    const audioUrl = URL.createObjectURL(blob);
+                    const audioPlayer = document.getElementById('audio-player');
+                    if (audioPlayer) {
+                        audioPlayer.src = audioUrl;
+                        audioPlayer.play();
+                    } else {
+                        console.error('Audio player element not found');
+                    }
+                })
+                .catch(error => console.error('Error generating audio:', error));
+            }
+        });
+    });
+
+  
+</script>
+
+        
+        <!-- Scroll Top Start -->
+    <div>
+        <a href="#" class="scroll-top" id="scroll-top">
+            <i class="arrow-top fal fa-long-arrow-up"></i>
+            <i class="arrow-bottom fal fa-long-arrow-up"></i>
+        </a>
+        <!-- Scroll Top End -->
+    </div>
+
+    <div id="site-main-mobile-menu" class="site-main-mobile-menu">
+        <div class="site-main-mobile-menu-inner">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <a href="index.html"><img src="static/assets/images/logo/light-logo.png" alt=""></a>
+                </div>
+                <div class="mobile-menu-close">
+                    <button class="toggle">
+                        <i class="icon-top"></i>
+                        <i class="icon-bottom"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-menu-content">
+                <nav class="site-mobile-menu">
+                    <ul>
+                        <li>
+                            <a href="/home"><span class="menu-text">首页</span></a>
+                        </li>
+                        <li>
+                            <a href="/introduct"><span class="menu-text">介绍</span></a>
+                        </li>
+                        <li>
+                            <a href="/contact"><span class="menu-text">联系我们</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="footer-section section" data-bg-color="#030e22">
+        <div class="container">
+
+            <!-- Footer Top Widgets Start -->
+
+            <!-- Footer Top Widgets End -->
+
+            <!-- Footer Copyright Start -->
+            <div class="row">
+                <div class="col">
+                    <p class="copyright">© <strong>Chatbot</strong></a>.</p>
+                </div>
+            </div>
+            <!-- Footer Copyright End -->
+
+        </div>
+    </div>
+
+
+    <!-- JS
+============================================ -->
+
+    <!-- Vendors JS -->
+    <script src="static/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="static/assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="static/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+    <script src="static/assets/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="static/assets/js/plugins/aos.min.js"></script>
+    <script src="static/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="static/assets/js/plugins/isotope.pkgd.min.js"></script>
+<!--    <script src="static/assets/js/plugins/parallax.min.js"></script>-->
+    <script src="static/assets/js/plugins/jquery.ajaxchimp.min.js"></script>
+    <script src="static/assets/js/plugins/jquery.counterup.min.js"></script>
+    <script src="static/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="static/assets/js/plugins/svg-inject.min.js"></script>
+    <script src="static/assets/js/plugins/swiper.min.js"></script>
+    <script src="static/assets/js/plugins/vanilla-tilt.min.js"></script>
+    <script src="static/assets/js/plugins/vivus.min.js"></script>
+    <script src="static/assets/js/plugins/waypoints.min.js"></script>
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <script src="static/assets/js/vendor/vendor.min.js"></script>
+    <script src="static/assets/js/plugins/plugins.min.js"></script> -->
+
+    <!-- Main Activation JS -->
+    <script src="static/assets/js/main.js"></script>
+    <script src="static/assets/js/侧边栏.js"></script>
+
+</body>
+
+</html>

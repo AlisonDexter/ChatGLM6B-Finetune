@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>注册</title>
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fefe91 0%, #caffca 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .form-26 {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .left-panel {
+            flex: 0 0 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fefe91 0%, #caffca 100%);
+        }
+
+        .right-panel {
+            flex: 0 0 50%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 25px;
+            margin: 20px;
+            min-height: 30vh;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-image: url("../images/hero-image/hero-1.jpg");
+        }
+
+        @media (max-width: 768px) {
+            .form-26 {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .right-panel {
+                order: -1;
+                flex: 1 0 100%;
+                min-height: 50vh;
+                border-radius: 15px 15px 0 0;
+                margin: 15px 15px 0 15px;
+            }
+
+            .left-panel {
+                border-radius: 0 0 10px 10px;
+                margin: 0 15px 15px 15px;
+                padding: 3rem 2rem;
+            }
+        }
+
+        .form-inner-cont {
+            max-width: 450px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .forms-26-info h2 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+        }
+
+        .forms-26-info p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        h6.already {
+            margin: 10px 0 0;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 25px;
+            color: #434343;
+        }
+
+        /* 统一输入框和按钮样式 */
+        .form-input input,
+        .form-input button {
+            width: 100%;
+            height: 45px;
+            border-radius: 20px;
+            margin: 10px 0;
+            padding: 0 15px;
+        }
+
+        /* 表单容器 */
+        .forms-gds {
+            display: flex !important;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* 输入框和按钮统一样式 */
+        .form-control {
+            width: 100%;
+            height: 45px;
+            border-radius: 8px;
+            padding: 0 15px;
+            border: 1px solid #007bff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: 2px solid #87CEEB;
+            border-color: transparent;
+        }
+
+        /* 按钮特殊样式 */
+        button.form-control {
+            background: #007bff;
+            color: rgb(82, 82, 82);
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        button.form-control:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* 标签样式 */
+        .input-label {
+            display: block;
+            text-align: left;
+            margin-left: 10px;
+            color: rgb(84, 84, 84);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* 链接样式 */
+        .already a {
+            color: #87CEEB;
+            text-decoration: none;
+        }
+
+        .already a:hover {
+            text-decoration: underline;
+        }
+
+        /* 确保输入框和按钮在移动设备上的显示效果 */
+        @media screen and (max-width: 600px) {
+            .input-box {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+
+        /* 新增动画样式 */
+        .shape {
+            position: absolute;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            top: 15%;
+            left: 10%;
+            width: 120px;
+        }
+
+        .shape-2 {
+            bottom: 20%;
+            right: 10%;
+            width: 80px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* 优化现有样式 */
+        .form-inner-cont {
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+        }
+
+        .forms-26-info h2 {
+            animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        }
+
+        @keyframes text-focus-in {
+            0% { filter: blur(12px); opacity: 0; }
+            100% { filter: blur(0); opacity: 1; }
+        }
+    </style>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+    	{% if messages %}
+        	{% for category, message in messages %}
+            	<div class="alert alert-{{ category }}">{{ message }}</div>
+        	{% endfor %}
+    	{% endif %}
+	{% endwith %}
+    
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords"
+        content="Merged Forms Page Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- //Meta tag Keywords -->
+	 <link rel="stylesheet" href="D:/NewProject/static/assets/css/register.css" type="text/css" media="all" /><!-- Style-CSS -->
+</head>
+<body>
+   <!-- /form-26-section -->
+   <section class="form-26">
+    <div class="left-panel">
+        <div class="form-inner-cont">
+            <div class="forms-26-info">
+						<h1 class="page-title">注册</h1>
+                        <p>欢迎来到我们的平台，请填写以下信息完成注册</p>
+                    </div>
+					<div class="form-right-inf"> 
+							<form method="POST" action="{{ url_for('register') }}">
+								{{ form.hidden_tag() }}
+								<!-- 用户名输入框 -->
+							    <div class="form-input">
+                					<label class="input-label">{{ form.name.label }}</label>
+                					{{ form.name(class="form-control") }}
+                					{% if form.name.errors %}
+                    					<span class="error-message">{{ form.name.errors[0] }}</span>
+                					{% endif %}
+            						</div>
+        						<!-- 邮箱输入框 -->
+        						<div class="form-input">
+            						<label class="input-label">{{ form.email.label }}</label>
+                					{{ form.email(class="form-control") }}
+                					{% if form.email.errors %}
+                    					<span class="error-message">{{ form.email.errors[0] }}</span>
+                					{% endif %}
+            						</div>
+								<!-- 年龄输入框 -->
+        						<div class="form-input">
+            						<label class="input-label">{{ form.age.label }}</label>
+                					{{ form.age(class="form-control") }}
+                					{% if form.age.errors %}
+                    					<span class="error-message">{{ form.age.errors[0] }}</span>
+                					{% endif %}
+            						</div>
+                				<!-- 密码和确认密码输入框 -->
+        						<div class="form-input">
+            						<label class="input-label">{{ form.password.label }}</label>
+                					{{ form.password(class="form-control") }}
+                					{% if form.password.errors %}
+                    					<span class="error-message">{{ form.password.errors[0] }}</span>
+                					{% endif %}
+            						</div>
+            						<div class="form-input">
+                						<label class="input-label">{{ form.confirm_password.label }}</label>
+                						{{ form.confirm_password(class="form-control") }}
+                						{% if form.confirm_password.errors %}
+                    						<span class="error-message">{{ form.confirm_password.errors[0] }}</span>
+                						{% endif %}
+            						</div>
+								<!-- 提交按钮 -->
+								<div class="form-input">
+                					 {{ form.submit(class="form-control") }}
+                                </div>
+							<h6 class="already">已经有账号了? <a href="{{ url_for('login') }}">点击这里登录</a></h6>
+						</form>
+						
+                    </div>
+
+                </div>
+			</div>
+		
+            <div class="right-panel">
+                <div class="shape shape-1 scene">
+                    <span data-depth="1"><img src="static/assets/images/shape-animation/video-shape-1.png" alt="shape"></span>
+                </div>
+                <div class="shape shape-2 scene" data-aos="zoom-in" data-aos-delay="300">
+                    <span data-depth="0.5"><img src="static/assets/images/shape-animation/video-shape-1.png" alt="shape"></span>
+                </div>
+            </div>
+		</section>
+        <script src="static/assets/js/plugins/aos.min.js"></script>
+        <script src="static/assets/js/plugins/parallax.min.js"></script>
+        <script>
+            // 初始化AOS动画
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+        
+            // 初始化视差效果
+            if(document.querySelector('.scene')) {
+                var scenes = document.querySelectorAll('.scene');
+                scenes.forEach(function(scene) {
+                    new Parallax(scene);
+                });
+            }
+        </script>
+</body>
+</html>

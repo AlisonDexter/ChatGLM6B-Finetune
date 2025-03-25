@@ -1,0 +1,223 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>注册</title>
+    <link rel="stylesheet" href="static/assets/css/login.css" type="text/css" media="all" />
+	<style>
+       /* 输入框动画 */
+.form-input {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    animation: fadeIn 1s ease;
+}
+
+/* 按钮动画 */
+.custom-submit-btn {
+    background:#007bff;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+h2{
+    margin-bottom: 15px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+
+    </style>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+    	{% if messages %}
+        	{% for category, message in messages %}
+            	<div class="alert alert-{{ category }}">{{ message }}</div>
+        	{% endfor %}
+    	{% endif %}
+	{% endwith %}
+    
+    <!-- Meta tag Keywords -->
+   
+    <meta name="keywords"
+        content="Merged Forms Page Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- //Meta tag Keywords -->
+	
+</head>
+<body>
+    <!-- 添加返回主页的按钮 -->
+   <a href="{{ url_for('home') }}" class="home-btn">返回主页</a>
+   <!-- /form-26-section -->
+   <section class="form-26">
+    <div class="left-panel">
+        <div class="form-inner-cont">
+            <div class="forms-26-info">
+						<h2 class="page-title"> 注册</h2>
+                        
+                    </div>
+				
+                                <div class="form-right-inf"> 
+                                  
+                        <form method="POST" action="{{ url_for('register') }}">
+                            {{ form.hidden_tag() }}
+                            <!-- 用户名输入框 -->
+                            <div class="form-input">
+                                <label class="input-label">{{ form.name.label }}</label>
+                                {{ form.name(class="form-control") }}
+                                {% if form.name.errors %}
+                                    <span class="error-message">{{ form.name.errors[0] }}</span>
+                                {% endif %}
+                                </div>
+                            <!-- 邮箱输入框 -->
+                            <div class="form-input">
+                                <label class="input-label">{{ form.email.label }}</label>
+                                {{ form.email(class="form-control") }}
+                                {% if form.email.errors %}
+                                    <span class="error-message">{{ form.email.errors[0] }}</span>
+                                {% endif %}
+                                </div>
+                            <!-- 年龄输入框 -->
+                            <div class="form-input">
+                                <label class="input-label">{{ form.age.label }}</label>
+                                {{ form.age(class="form-control") }}
+                                {% if form.age.errors %}
+                                    <span class="error-message">{{ form.age.errors[0] }}</span>
+                                {% endif %}
+                                </div>
+                            <!-- 密码和确认密码输入框 -->
+                            <div class="form-input">
+                                <label class="input-label">{{ form.password.label }}</label>
+                              
+                                {{ form.password(class="form-control") }}
+                                {% if form.password.errors %}
+                                    <span class="error-message">{{ form.password.errors[0] }}</span>
+                                {% endif %}
+                                </div>
+                                <div class="form-input">
+                                    <label class="input-label">{{ form.confirm_password.label }}</label>
+                                    {{ form.confirm_password(class="form-control") }}
+               
+                                    {% if form.confirm_password.errors %}
+                                        <span class="error-message">{{ form.confirm_password.errors[0] }}</span>
+                                    {% endif %}
+                                </div>
+                            <!-- 提交按钮 -->
+                            <div class="form-input">
+                                 {{ form.submit(class="form-control custom-submit-btn") }}
+                            </div>
+                <h6 class="already">已经有账号了? <a href="{{ url_for('login') }}"><span>点击这里登录<span></span></span></a></h6>
+            </form>
+						
+                    </div>
+
+                </div>
+			</div>
+		
+            <div class="right-panel">
+                <div class="shape shape-1 scene">
+                    <span data-depth="1"><img src="static/assets/images/shape-animation/video-shape-1.png" alt="shape"></span>
+                </div>
+                <div class="shape shape-2 scene" data-aos="zoom-in" data-aos-delay="300">
+                    <span data-depth="0.5"><img src="static/assets/images/shape-animation/video-shape-1.png" alt="shape"></span>
+                </div>
+            </div>
+		</section>
+        <script src="static/assets/js/plugins/aos.min.js"></script>
+        <script src="static/assets/js/plugins/parallax.min.js"></script>
+        <script>
+            // 初始化AOS动画
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+        
+            // 初始化视差效果
+            if(document.querySelector('.scene')) {
+                var scenes = document.querySelectorAll('.scene');
+                scenes.forEach(function(scene) {
+                    new Parallax(scene);
+                });
+            }
+             // 动态切换.right-panel的背景图
+	 function changeRightPanelBackground() {
+                // 图片路径数组
+                const images = [
+                    'static/assets/images/new/1.png',
+                    'static/assets/images/new/2.png',
+                    'static/assets/images/new/3.png',
+                    'static/assets/images/new/4.png',
+					'static/assets/images/new/5.png',
+					
+                    // 添加更多图片路径
+                ];
+
+                // 随机选择一个图片
+                const randomImage = images[Math.floor(Math.random() * images.length)];
+
+                // 应用背景图到.right-panel
+                const rightPanel = document.querySelector('.right-panel');
+                if (rightPanel) {
+                    rightPanel.style.backgroundImage = `url(${randomImage})`;
+                    rightPanel.style.backgroundSize = 'cover';
+                    rightPanel.style.backgroundPosition = 'center';
+                    rightPanel.style.backgroundRepeat = 'no-repeat';
+                }
+            }
+
+            // 页面加载时调用
+            window.onload = changeRightPanelBackground;
+
+            // 为图片添加点击事件监听器
+            document.querySelector('.right-panel img').addEventListener('click', function() {
+                location.reload(); // 刷新页面
+            });
+
+
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Agency - Bootstrap 5 Template</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Agench is an elegant design, 100% responsive Bootstrap 5 template. It is best for agency websites and marketing companies.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="static/assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="static/assets/css/vendor/font-awesome-pro.min.css">
+    <link rel="stylesheet" href="static/assets/css/vendor/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="static/assets/css/vendor/muli-font.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    
+    <link rel="stylesheet" href="static/assets/css/plugins/swiper.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/aos.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="static/assets/css/style.css">
+    <link rel="stylesheet" href="static/assets/css/侧边栏.css">
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <link rel="stylesheet" href="static/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="static/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="static/assets/css/style.min.css"> -->
+
+
+<style>
+     /* 样式调整 */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        height: 100vh; /* 确保 body 占满整个视口高度 */
+    }
+
+        button{
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        #recording-indicator{
+            display: none;
+            margin-top: 20px;
+        }
+        .username {
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+            text-decoration: none; /* 去掉下划线 */
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: flex-end;
+            z-index: 5;
+           
+        }
+
+         .chat-box {
+
+            height: 450px; /* 固定高度 */
+            width: 100%; /* 根据需要设置宽度 */
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .chat-entry {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+
+
+        .chat-entry .user-message, .chat-entry .bot-response {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        .chat-entry .user-message {
+            align-self: flex-end;
+            background-color: #dcf8c6;
+            color:black;
+        }
+
+        .chat-entry .bot-response {
+            align-self: flex-start;
+            background-color: #f1f0f0;
+            color:black;
+
+        }
+
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .input-container input[type="text"] {
+            flex-grow: 1;
+            margin-right: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .input-container input[type="submit"] {
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .input-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        button{
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 20px;
+        }
+        #recording-indicator{
+            display: none;
+            margin-top: 20px;
+            width: 40px;
+            height: 40px;
+            padding-left: 10px;
+            padding-bottom: 20px;
+        }
+        .audio-button{
+            
+            display: block;
+            padding: 8px 16pxs
+        }
+        .audio_contain{
+            display: inline-flex;
+        }
+        .loudspeaker{
+            width: 10px;
+            height: 10px;
+            padding-top: 5px;
+        }
+
+        .text-loudspeaker{
+            margin-bottom: 3px;
+        }
+        .loudspeaker-button {
+            background: none; /* 去掉按钮背景 */
+            border: none; /* 去掉按钮边框 */
+            padding: 0; /* 去掉按钮内边距 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+        }
+
+        .loudspeaker-icon {
+            width: 20px; /* 设置图标宽度 */
+            height: 20px; /* 设置图标高度 */
+        }
+       
+
+        .btn-hover-primary {
+            line-height: 52px;
+            box-sizing: content-box;
+        }
+        
+      
+       
+        .btn-clear-history {
+            float: left;
+            margin-left: 10px;
+        }
+                
+       
+
+
+    </style>
+</head>
+<body>
+ <!-- 侧边栏1 -->
+ <div class="sidebar1" id="sidebar1">
+    <button class="bubble" id="toggle-sidebar" data-tooltip="打开侧边栏">☰</button>
+    <button class="bubble" id="new-chat-btn" data-tooltip="开启新对话">+</button>
+</div>
+
+<!-- 侧边栏2 -->
+<div class="sidebar2" id="sidebar2">
+    <button class="bubble" data-tooltip="收起侧边栏" id="close-sidebar">➜</button>
+    <button id="new-chat-btn-expanded">+ 开启新对话</button>
+    <div class="chat-history">
+        <h3>今天</h3>
+        <ul id="today-list"></ul>
+            {% for chat in today_chats %}
+                <li>
+                    <a href="{{ url_for('get_chat', chat_id=chat.id) }}">{{ chat.question }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <h3>昨天</h3>
+        <ul id="yesterday-list"></ul>
+            {% for chat in yesterday_chats %}
+                <li>
+                    <a href="{{ url_for('get_chat', chat_id=chat.id) }}">{{ chat.question }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h3>7天内</h3>
+        <ul id="last-week-list"></ul>
+            {% for chat in last_week_chats %}
+                <li>
+                    <a href="{{ url_for('get_chat', chat_id=chat.id) }}">{{ chat.question }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h3>30天内</h3>
+        <ul id="last-month-list"></ul>
+            {% for chat in last_month_chats %}
+                <li>
+                    <a href="{{ url_for('get_chat', chat_id=chat.id) }}">{{ chat.question }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- 主内容区域 -->
+<div class="main-content" id="main-content">    
+        
+    <div id="page" class="section">
+
+        <div class="header-section header-transparent sticky-header section">
+            <div class="header-inner">
+                <div class="container position-relative">
+                    <div class="row justify-content-between align-items-center">
+
+                        <!-- Header Logo Start -->
+                        <div class="col-xl-2 col-auto order-0">
+                            <div class="header-logo">
+                                <a>
+                                    <img class="dark-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+                                    <img class="light-logo" src="static/assets/images/logo/light-logo.png" alt="Agency Logo">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Header Logo End -->
+
+                        <!-- Header Main Menu Start -->
+                        <div
+                            class="col-auto col-xl d-flex align-items-center justify-content-xl-center justify-content-end order-2 order-xl-1">
+                            <div class="menu-column-area d-none d-xl-block position-static">
+                                <nav class="site-main-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="/home"><span
+                                                    class="menu-text">首页</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/introduct"><span class="menu-text">用户使用手册</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/contact"><span class="menu-text">法律检索</span></a>
+                                        </li>
+                                        <li>
+                                            <a class="active" href="/chatrobot"><span class="menu-text">颐年智伴助手</span></a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Header Search Start -->
+                            <div class="header-search-area ml-xl-7 ml-0">
+
+                                
+                            </div>
+                            <!-- Header Search End -->
+
+                            <!-- Header Mobile Menu Toggle Start -->
+                            <div class="header-mobile-menu-toggle d-xl-none ml-sm-2">
+                                <button class="toggle">
+                                    <i class="icon-top"></i>
+                                    <i class="icon-middle"></i>
+                                    <i class="icon-bottom"></i>
+                                </button>
+                            </div>
+                            <!-- Header Mobile Menu Toggle End -->
+                        </div>
+                        <!-- Header Main Menu End -->
+
+                        <!-- Header Right Start -->
+                        <div class="col-xl-2 col d-none d-sm-flex justify-content-end order-1 order-xl-2">
+                            {% if current_user.is_authenticated %}
+                              <div class="username-container" style="display: flex; align-items: center;">
+                                <span class="username">{{ current_user.name }}</span>
+                                <a href="{{ url_for('logout') }}" style="line-height: 30px; margin-left: 1rem; height: 30px;" class="btn btn-light btn-hover-primary">退出登录</a>
+                              </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Section End -->
+         <!-- 侧边栏 -->
+         
+       
+
+        <!-- Main Search Start -->
+        <div class="main-search-active">
+            <div class="sidebar-search-icon">
+                <button class="search-close"><i class="pe-7s-close"></i></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form action="#">
+                    <div class="form-search">
+                        <input id="search" class="input-text" value="" placeholder="" type="search">
+                        <button>
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <p class="form-description"></p>
+            </div>
+        </div>
+        <!-- Main Search End -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--         Slider/Intro Section Start-->
+        <div class="intro-slider-wrap section">
+<!--           <div class="intro-slider swiper-container">-->
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="intro-section section overlay" data-bg-image="static/assets/images/hero-image/hero-1.jpg">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                
+                                        <div class="chat-container w-100---">
+                                            <span style="font-size: 24px; color:rgb(255, 255, 255); margin-top: 30px;">点击下面按钮进行语音输入</span>
+                                            <div class="audio_contain">
+                                                <button class="audio-button" id="start-recording" >开始说话</button>
+                                                <button class="audio-button" id="stop-recording" disabled>停止说话</button>
+                                            
+                                                <img id="recording-indicator" src="static/assets/images/recording.gif" alt="录音">
+                                            </div>
+                                            <div class="chat-box" id="chat-box">
+                                                {% for entry in chat_history %}
+                                                    <div class="chat-entry">
+                                                        <div class="user-message">
+                                                            <p class="message-text"><strong></strong>{{ entry['question'] }}</p>
+
+                                                        </div>
+                                                        <div class="bot-response">
+                                                            <p class="message-text text-loudspeaker" id="response-text">{{ entry['response'] }}</p>
+                                                            <button class="loudspeaker-button">
+                                                                <img src="static/assets/images/loudspeaker.svg" alt="扬声器" class="loudspeaker-icon">
+                                                            </button>
+                                                        </div>
+                                                        <audio id="audio-player" style="display:none;"></audio>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            
+                                            <form id="chat-form" method="post" action="/chatrobot">
+                                                <label for="question">欢迎使用颐年智伴助手</label>
+                                                <div class="d-flex align-items-center">
+                                                    <input class="form-control me-2" type="text" id="question" name="question" placeholder="输入您的问题..." required >
+                                                    <input type="submit" class="btn btn-primary" value="提交问题" style="flex:3;">
+                                                </div>
+                                            </form>
+                                            <form method="post" action="{{ url_for('clear_history') }}">
+                                                <input type="submit" class="btn btn-danger btn-clear-history" value="清除聊天记录">
+                                            </form>
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                               
+                                    
+                                        
+                                  
+                                
+                         
+                            
+                    </div>
+                </div>
+           </div>
+        </div>
+    
+         
+        
+    </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        function scrollToBottom() {
+            const chatBox = $('#chat-box');
+            chatBox.scrollTop(chatBox.prop('scrollHeight'));
+        }
+
+        scrollToBottom();
+
+        $('#chat-form').on('submit', function(event) {
+            event.preventDefault();
+            const question = $('#question').val();
+
+            $.ajax({
+                url: '/chatrobot',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrf_token')
+                },
+                data: JSON.stringify({ question: question }),
+                success: function(response) {
+                    const chatBox = $('#chat-box');
+                    const newEntry = `
+                        <div class="chat-entry">
+                            <div class="user-message">
+                                <p class="message-text"><strong></strong>${question}</p>
+                            </div>
+                            <div class="bot-response">
+                                <p class="message-text text-loudspeaker">${response.response}</p>
+                                <button class="loudspeaker-button">
+                                    <img src="static/assets/images/loudspeaker.svg" alt="play-audio" class="loudspeaker-icon">
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    chatBox.append(newEntry);
+                    $('#question').val('');
+                    scrollToBottom();
+
+                    // 为新添加的扬声器按钮添加点击事件
+                    chatBox.find('.loudspeaker-button').last().on('click', function() {
+                        const text = $(this).siblings('.text-loudspeaker').text();
+                        fetch('/generate_audio', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ text: text })
+                        })
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const audioUrl = URL.createObjectURL(blob);
+                            const audioPlayer = document.getElementById('audio-player');
+                            audioPlayer.src = audioUrl;
+                            audioPlayer.play();
+                        })
+                        .catch(error => console.error('Error generating audio:', error));
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX 请求出错: ', textStatus, errorThrown);
+                    alert('提交时出错，请重试！');
+                }
+            });
+        });
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        $('#start-recording').on('click', function() {
+            audioChunks = [];
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.start();
+                    $('#recording-indicator').show();
+                    $('#start-recording').prop('disabled', true);
+                    $('#stop-recording').prop('disabled', false);
+
+                    mediaRecorder.ondataavailable = event => {
+                        audioChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const formData = new FormData();
+                        formData.append('audio', audioBlob, 'test.wav');
+
+                        fetch('/process_audio', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.text) {
+                                $('#question').val(data.text); // 确保输入框的ID为question
+                            } else {
+                                console.error('Error processing audio:', data.error);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error uploading audio:', error);
+                        });
+
+                        $('#recording-indicator').hide();
+                        $('#start-recording').prop('disabled', false);
+                        $('#stop-recording').prop('disabled', true);
+                    };
+                })
+                .catch(error => console.error('Error accessing media devices.', error));
+        });
+
+        $('#stop-recording').on('click', function() {
+            mediaRecorder.stop();
+            $('#recording-indicator').hide();
+            $('#start-recording').prop('disabled', false);
+            $('#stop-recording').prop('disabled', true);
+        });
+
+        document.querySelector('.loudspeaker-button').addEventListener('click', function() {
+            const text = document.getElementById('response-text').innerText;
+            fetch('/generate_audio', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const audioUrl = URL.createObjectURL(blob);
+                const audioPlayer = document.getElementById('audio-player');
+                if (audioPlayer) {
+                    audioPlayer.src = audioUrl;
+                    audioPlayer.play();
+                } else {
+                    console.error('Audio player element not found');
+                }
+            })
+            .catch(error => console.error('Error generating audio:', error));
+        });
+
+        document.getElementById('chat-box').addEventListener('click', function(event) {
+            if (event.target.closest('.loudspeaker-button')) {
+                const text = event.target.closest('.bot-response').querySelector('.text-loudspeaker').innerText;
+                fetch('/generate_audio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: text })
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                    const audioUrl = URL.createObjectURL(blob);
+                    const audioPlayer = document.getElementById('audio-player');
+                    if (audioPlayer) {
+                        audioPlayer.src = audioUrl;
+                        audioPlayer.play();
+                    } else {
+                        console.error('Audio player element not found');
+                    }
+                })
+                .catch(error => console.error('Error generating audio:', error));
+            }
+        });
+   
+
+
+        // <!-- 侧边栏功能 -->
+       document.addEventListener("DOMContentLoaded", function () {
+    const newChatBtn = document.getElementById("new-chat-btn");
+    const todayList = document.getElementById("today-list");
+
+    let chatMessages = []; // 存储当前对话
+
+    // 保存当前对话
+    async function saveCurrentChat() {
+        if (chatMessages.length === 0) return;
+
+        try {
+            let response = await fetch("/save_chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ messages: chatMessages })
+            });
+
+            let result = await response.json();
+            if (response.ok) {
+                // 获取新对话的第一句话
+                let firstMessage = result.first_message;
+
+                // 创建新的 <li> 元素
+                let newChatItem = document.createElement("li");
+                newChatItem.classList.add("bubble");
+                newChatItem.dataset.tooltip = "点击查看对话";
+                newChatItem.textContent = firstMessage;
+                
+                // 插入到“今天”的对话记录
+                todayList.appendChild(newChatItem);
+
+                // 清空当前对话
+                chatMessages = [];
+            } else {
+                console.error("保存失败:", result.error);
+            }
+        } catch (error) {
+            console.error("请求错误:", error);
+        }
+    }
+
+    // 开启新对话
+    function startNewChat() {
+        saveCurrentChat();
+    }
+
+    // 监听“新对话”按钮
+    newChatBtn.addEventListener("click", startNewChat);
+});
+
+        
+    });
+</script>
+
+        
+        <!-- Scroll Top Start -->
+    <div>
+        <a href="#" class="scroll-top" id="scroll-top">
+            <i class="arrow-top fal fa-long-arrow-up"></i>
+            <i class="arrow-bottom fal fa-long-arrow-up"></i>
+        </a>
+        <!-- Scroll Top End -->
+    </div>
+
+    <div id="site-main-mobile-menu" class="site-main-mobile-menu">
+        <div class="site-main-mobile-menu-inner">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <a href="index.html"><img src="static/assets/images/logo/light-logo.png" alt=""></a>
+                </div>
+                <div class="mobile-menu-close">
+                    <button class="toggle">
+                        <i class="icon-top"></i>
+                        <i class="icon-bottom"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-menu-content">
+                <nav class="site-mobile-menu">
+                    <ul>
+                        <li>
+                            <a href="/home"><span class="menu-text">首页</span></a>
+                        </li>
+                        <li>
+                            <a href="/introduct"><span class="menu-text">介绍</span></a>
+                        </li>
+                        <li>
+                            <a href="/contact"><span class="menu-text">联系我们</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="footer-section section" data-bg-color="#030e22">
+        <div class="container">
+
+            <!-- Footer Top Widgets Start -->
+
+            <!-- Footer Top Widgets End -->
+
+            <!-- Footer Copyright Start -->
+            <div class="row">
+                <div class="col">
+                    <p class="copyright">© <strong>Chatbot</strong></a>.</p>
+                </div>
+            </div>
+            <!-- Footer Copyright End -->
+
+        </div>
+    </div>
+
+
+    <!-- JS
+============================================ -->
+
+    <!-- Vendors JS -->
+    <script src="static/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="static/assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="static/assets/js/vendor/jquery-migrate-3.1.0.min.js"></script>
+    <script src="static/assets/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="static/assets/js/plugins/aos.min.js"></script>
+    <script src="static/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="static/assets/js/plugins/isotope.pkgd.min.js"></script>
+<!--    <script src="static/assets/js/plugins/parallax.min.js"></script>-->
+    <script src="static/assets/js/plugins/jquery.ajaxchimp.min.js"></script>
+    <script src="static/assets/js/plugins/jquery.counterup.min.js"></script>
+    <script src="static/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="static/assets/js/plugins/svg-inject.min.js"></script>
+    <script src="static/assets/js/plugins/swiper.min.js"></script>
+    <script src="static/assets/js/plugins/vanilla-tilt.min.js"></script>
+    <script src="static/assets/js/plugins/vivus.min.js"></script>
+    <script src="static/assets/js/plugins/waypoints.min.js"></script>
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <script src="static/assets/js/vendor/vendor.min.js"></script>
+    <script src="static/assets/js/plugins/plugins.min.js"></script> -->
+
+    <!-- Main Activation JS -->
+    <script src="static/assets/js/main.js"></script>
+    <script src="static/assets/js/侧边栏.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<style>
+    body {
+		/* background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); */
+		background: linear-gradient(135deg, #fefe91 0%, #caffca 100%);
+    }
+  </style>
+    <title>Merged Forms Page Responsive Widget Template :: W3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords"
+        content="Merged Forms Page Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- //Meta tag Keywords -->
+     <link rel="stylesheet" href="static/assets/css/login.css" type="text/css" media="all" /><!-- Style-CSS -->
+	 <link rel="stylesheet" href="static/assets/css/plugins/aos.min.css">
+	<link rel="stylesheet" href="static/assets/css/plugins/animate.css">
+</head>
+<body>
+	<!-- 添加返回主页的按钮 -->
+	<a href="{{ url_for('home') }}" class="home-btn">返回主页</a>
+   <!-- /form-26-section -->
+   <section class="form-26">
+	
+	<div class="left-panel">	
+			<div class="form-inner-cont"  data-aos="fade-right" data-aos-duration="1000">
+					<div class="forms-26-info">
+						 <h2>登录</h2>
+                        <p>                                                                                </p>
+                    </div>
+				    <!-- Display flash messages -->
+    				{% with messages = get_flashed_messages(with_categories=true) %}
+        				{% if messages %}
+            				<div class="flash-messages">
+                				{% for category, message in messages %}
+                    				<div class="alert alert-{{ category }}">{{ message }}</div>
+                				{% endfor %}
+            				</div>
+        				{% endif %}
+    				{% endwith %}
+					<div class="form-right-inf"> 
+							 <form action="{{ url_for('login') }}" method="post" class="signin-form">
+								 {{ form.hidden_tag() }} <!-- 如果使用Flask-WTF表单处理 -->
+							 <div class="forms-gds">
+								<div  class="form-input">
+									 <label class="input-label">邮箱</label>
+									 {{ form.email(class="form-control input-box") }}
+								</div>
+								<div  class="form-input">
+									<label class="input-label">密码</label>
+        							{{ form.password(class="form-control input-box") }}
+								</div>
+								<div  class="form-input">
+									<!-- <button type="submit" class="form-control input-box">登录</button>  -->
+									<button type="submit" class="form-control">登录</button>
+								</div>
+							</div>
+							<h6 class="already">
+								没有账号吗?<a href="{{ url_for('register') }}"><span>点击这里注册<span></span></span></a></h6>
+								
+						</form>
+						
+                    </div>
+					
+
+                </div>
+			
+			
+		
+		</div>
+		<div class="right-panel">
+		<!-- 添加动画元素 -->
+        <div class="shape shape-1 scene">
+            <span data-depth="1"><img src="static/assets/images/shape-animation/video-shape-1.png" alt="shape"></span>
+        </div>
+        <div class="shape shape-2 scene" data-aos="zoom-in" data-aos-delay="300">
+            <span data-depth="0.5"><img src="static/assets/images/shape-animation/video-shape-1.png" alt="shape"></span>
+        </div>
+		
+					
+		</div>
+		</section>
+      <!-- //form-26-section -->
+	   <!-- 在页面底部添加JS初始化 -->
+<script src="static/assets/js/plugins/aos.min.js"></script>
+<script src="static/assets/js/plugins/parallax.min.js"></script>
+<script>
+    // 初始化AOS动画
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+
+    // 初始化视差效果
+    if(document.querySelector('.scene')) {
+        var scenes = document.querySelectorAll('.scene');
+        scenes.forEach(function(scene) {
+            new Parallax(scene);
+        });
+    }
+	// 动态切换.right-panel的背景图
+	function changeRightPanelBackground() {
+                // 图片路径数组
+                const images = [
+                    'static/assets/images/new/1.png',
+                    'static/assets/images/new/2.png',
+                    'static/assets/images/new/3.png',
+                    'static/assets/images/new/4.png',
+					'static/assets/images/new/5.png',
+					
+                    // 添加更多图片路径
+                ];
+
+                // 随机选择一个图片
+                const randomImage = images[Math.floor(Math.random() * images.length)];
+
+                // 应用背景图到.right-panel
+                const rightPanel = document.querySelector('.right-panel');
+                if (rightPanel) {
+                    rightPanel.style.backgroundImage = `url(${randomImage})`;
+                    rightPanel.style.backgroundSize = 'cover';
+                    rightPanel.style.backgroundPosition = 'center';
+                    rightPanel.style.backgroundRepeat = 'no-repeat';
+                }
+            }
+
+            // 页面加载时调用
+            window.onload = changeRightPanelBackground;
+
+			// 为图片添加点击事件监听器
+            document.querySelector('.right-panel img').addEventListener('click', function() {
+                location.reload(); // 刷新页面
+            });
+</script>
+</body>
+</html>
